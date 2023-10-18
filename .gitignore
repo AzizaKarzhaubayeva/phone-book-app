@@ -68,3 +68,11 @@ testem.log
 Thumbs.db
 
 .env
+
+.browserslistrc
+.editorconfig
+.eslintrc.json
+angular.json
+ionic.config.json
+ionic.starter.json
+karma.conf.js
