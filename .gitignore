@@ -76,3 +76,4 @@ angular.json
 ionic.config.json
 ionic.starter.json
 karma.conf.js
+package-lock.json
