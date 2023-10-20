@@ -10,7 +10,7 @@
     </ion-card-header>
 
     <ion-card-content>
-      <form (ngSubmit)="login()">
+      <form [formGroup]="formGroup" (ngSubmit)="login(formGroup.value)">
         <ion-input
         type="email"
         [clearInput]="true"
@@ -18,10 +18,11 @@
         labelPlacement="floating"
         errorText="Invalid email"
         [(ngModel)]="email"
+        formControlName="emailControl"
         name="email"
       ></ion-input>
 
-      <br>
+      <br> 
 
       <ion-input
         type="password"
@@ -30,6 +31,7 @@
         labelPlacement="floating"
         errorText="Invalid password"
         [(ngModel)]="password"
+        formControlName="passwordControl"
         name="password"
       ></ion-input>
 

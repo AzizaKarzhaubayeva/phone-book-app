@@ -9,8 +9,8 @@ export class AuthService {
   private authenticated = false;
 
   private users: any[] = [
-    {email: "Madmax@gmail.com", password: "1234"},
-    {email: "Adam@mail.ru", password: "890"}
+    {email: "Madmax@gmail.com", password: "12Aalkaf@"},
+    {email: "Adam@mail.ru", password: "@lkd34$$A"}
   ]
 
   constructor(){};
