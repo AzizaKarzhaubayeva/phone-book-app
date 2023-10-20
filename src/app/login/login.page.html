@@ -10,34 +10,36 @@
     </ion-card-header>
 
     <ion-card-content>
-
-      <ion-input
+      <form (ngSubmit)="login()">
+        <ion-input
         type="email"
         [clearInput]="true"
         label="Email"
         labelPlacement="floating"
         errorText="Invalid email"
-        ngModel
-        email
+        [(ngModel)]="email"
+        name="email"
       ></ion-input>
 
       <br>
 
       <ion-input
         type="password"
-        value="password" 
         [clearInput]="true"
         label="Password"
         labelPlacement="floating"
         errorText="Invalid password"
-        ngModel
+        [(ngModel)]="password"
+        name="password"
       ></ion-input>
 
       <br>
 
-      <ion-button size="block">
+      <ion-button size="block" type="submit">
         Login
       </ion-button>
+      </form>
+
 
     </ion-card-content>
     </ion-card>
