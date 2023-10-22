@@ -8,7 +8,7 @@ import { Contacts } from '@capacitor-community/contacts';
 })
 export class HomePage implements OnInit {
 
-  contacts = [];
+  permission: any;
 
   ngOnInit(): void {
     this.getContacts();
