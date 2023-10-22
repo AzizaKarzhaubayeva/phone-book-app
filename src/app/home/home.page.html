@@ -6,8 +6,24 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="light">
+<ion-content >
+  
+    <!-- {{contacts | json}} -->
+  <ion-list lines="full" *ngIf="contacts.length > 0">
 
-  {{permission | json}}
+    <ion-item *ngFor="let contact of contacts">
+      <ion-label>
+        {{contact.name.display}}
+        <p>
+          <!-- <ion-text *ngFor="let phone of contact?.phones; let i = index">
+            <span *ngIf="i > 0" >, </span>
+            {{phone?.number }}
+          </ion-text> -->
+          <!-- {{joinNumbers(contact?.phones)}} -->
+          {{contact.phones[0].number}}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
