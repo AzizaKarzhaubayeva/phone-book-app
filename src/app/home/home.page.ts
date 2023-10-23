@@ -1,20 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Contacts } from '@capacitor-community/contacts';
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, OnDestroy {
+
 
   contacts: any[] = [];
+  scannedResult: any;
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.getContacts();
   }
 
-  constructor() {}
+  ngOnDestroy(): void{
+    this.stopScan();
+  }
 
   async getContacts(){
     try{
@@ -26,7 +35,10 @@ export class HomePage implements OnInit {
         const result = await  Contacts.getContacts({
           projection: {
             name: true,
-            phones: true
+            phones: true,
+            emails: true,
+            organization: true,
+            birthday: true
           }
         });
         console.log("results: ", result);
@@ -41,8 +53,49 @@ export class HomePage implements OnInit {
 
   }
 
-  joinNumbers(array){
-    return array.map(x => x.number).join(', ')
+  checkPermission = async () => {
+    // check or request permission
+    const status = await BarcodeScanner.checkPermission({ force: true });
+  
+    if (status.granted) {
+      // the user granted permission
+      return true;
+    }
+  
+    return false;
+  };
+
+  async startScan(){
+    try{
+      const permission = await this.checkPermission();
+      if(!permission){
+        return;
+      }
+      await BarcodeScanner.hideBackground();
+      document.querySelector('body').classList.add('scanner-active');
+      const result = await BarcodeScanner.startScan();
+      console.log(result);
+      if(result?.hasContent) {
+        this.scannedResult = result.content;
+        this.showQRCodeAlert(result.content);
+        document.querySelector('body').classList.remove('scanner-active');
+        console.log(this.scannedResult);
+      }
+    }
+    catch(e){
+      console.log(e);
+      this.stopScan();
+    }
+  }
+
+  showQRCodeAlert(content: string) {
+    alert('QR Code Content: ' + content);
+  }
+
+  stopScan(){
+    BarcodeScanner.showBackground();
+    BarcodeScanner.stopScan();
+    document.querySelector('body').classList.remove('scanner-active');
   }
 
 }
