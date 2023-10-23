@@ -3,15 +3,17 @@
     <ion-title>
       Contacts
     </ion-title>
-
+    <ion-buttons slot="end" style="margin-right:6px;">
       <button ion-button icon-only (click)="startScan()">
-        <ion-icon  name="qr-code" ></ion-icon>
+        <ion-icon name="qr-code" style="zoom:2.2; color: rgb(109, 108, 107);"></ion-icon>
       </button>
+    </ion-buttons>
+      
   
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content [style.visibility]="content_visibility">
   
     <!-- {{contacts | json}} -->
   <ion-list lines="full" *ngIf="contacts.length > 0">

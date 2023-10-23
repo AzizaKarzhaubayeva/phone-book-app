@@ -14,6 +14,7 @@ export class HomePage implements OnInit, OnDestroy {
 
   contacts: any[] = [];
   scannedResult: any;
+  content_visibility = '';
 
   constructor(private router: Router) {}
 
@@ -73,12 +74,16 @@ export class HomePage implements OnInit, OnDestroy {
       }
       await BarcodeScanner.hideBackground();
       document.querySelector('body').classList.add('scanner-active');
+      this.content_visibility = 'hidden';
       const result = await BarcodeScanner.startScan();
       console.log(result);
+      
+      BarcodeScanner.showBackground();
+      document.querySelector('body').classList.remove('scanner-active');
+      this.content_visibility = '';
       if(result?.hasContent) {
         this.scannedResult = result.content;
-        this.showQRCodeAlert(result.content);
-        document.querySelector('body').classList.remove('scanner-active');
+        this.showQRCodeAlert(result.content);        
         console.log(this.scannedResult);
       }
     }
@@ -93,9 +98,11 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   stopScan(){
+    
     BarcodeScanner.showBackground();
     BarcodeScanner.stopScan();
     document.querySelector('body').classList.remove('scanner-active');
+    this.content_visibility = '';
   }
 
 }
