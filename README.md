@@ -70,4 +70,5 @@ ionic cap open ios
 ![IMG_6385](https://github.com/ZizaKr/phone-book-app/assets/70637340/fda30775-920e-4b05-9fab-f5fcfe8dcde3)
 
 3.8 Нажимаем на иконку сверху справа и открывается камера телефона. Наводим на Qr code и сканируем. Содержимое Qr кода выводим с помощью alert: ![IMG_6386](https://github.com/ZizaKr/phone-book-app/assets/70637340/97bbb9a1-dfd6-49fd-a046-af0fa2fadf39)
-
+![IMG_6387](https://github.com/ZizaKr/phone-book-app/assets/70637340/743d4ea4-1e98-40c9-9bdb-eb5cc9821022)
+![IMG_6388](https://github.com/ZizaKr/phone-book-app/assets/70637340/60efa993-9807-4c32-bc64-55ec465bcdf0)
